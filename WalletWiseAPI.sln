@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletWiseApi", "src\Wallet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletWise.Model", "WalletWise.Model\WalletWise.Model.csproj", "{EBA0E023-D078-4CF1-B94A-D300AA98AF43}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WalletWise.DB", "WalletWise.DB\WalletWise.DB.sqlproj", "{ED535D55-9454-48CE-A566-15A9DC1CF005}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,12 @@ Global
 		{EBA0E023-D078-4CF1-B94A-D300AA98AF43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBA0E023-D078-4CF1-B94A-D300AA98AF43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBA0E023-D078-4CF1-B94A-D300AA98AF43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED535D55-9454-48CE-A566-15A9DC1CF005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED535D55-9454-48CE-A566-15A9DC1CF005}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED535D55-9454-48CE-A566-15A9DC1CF005}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{ED535D55-9454-48CE-A566-15A9DC1CF005}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED535D55-9454-48CE-A566-15A9DC1CF005}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED535D55-9454-48CE-A566-15A9DC1CF005}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
