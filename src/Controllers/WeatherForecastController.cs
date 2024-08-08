@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace WalletWiseAPI.Controllers
+namespace WalletWiseApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]

@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletWiseAPI", "WalletWiseAPI.csproj", "{47BB3CF8-605C-41A8-BEE7-079BE237ED37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletWiseApi", "src\WalletWiseApi.csproj", "{0D1C540C-0C87-4F8D-82CC-524E191E4606}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WalletWise.DB", "..\WalletWise.DB\WalletWise.DB.sqlproj", "{B07E24D9-136C-429B-A9F8-D466D627EE6C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletWise.Model", "..\WalletWise.Model\WalletWise.Model.csproj", "{AD4E349B-FF96-48D0-80A1-3CAF53194461}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletWise.Model", "WalletWise.Model\WalletWise.Model.csproj", "{EBA0E023-D078-4CF1-B94A-D300AA98AF43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,25 +13,19 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{47BB3CF8-605C-41A8-BEE7-079BE237ED37}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{47BB3CF8-605C-41A8-BEE7-079BE237ED37}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{47BB3CF8-605C-41A8-BEE7-079BE237ED37}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{47BB3CF8-605C-41A8-BEE7-079BE237ED37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B07E24D9-136C-429B-A9F8-D466D627EE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B07E24D9-136C-429B-A9F8-D466D627EE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B07E24D9-136C-429B-A9F8-D466D627EE6C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{B07E24D9-136C-429B-A9F8-D466D627EE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B07E24D9-136C-429B-A9F8-D466D627EE6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B07E24D9-136C-429B-A9F8-D466D627EE6C}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{AD4E349B-FF96-48D0-80A1-3CAF53194461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AD4E349B-FF96-48D0-80A1-3CAF53194461}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AD4E349B-FF96-48D0-80A1-3CAF53194461}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AD4E349B-FF96-48D0-80A1-3CAF53194461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D1C540C-0C87-4F8D-82CC-524E191E4606}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D1C540C-0C87-4F8D-82CC-524E191E4606}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D1C540C-0C87-4F8D-82CC-524E191E4606}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D1C540C-0C87-4F8D-82CC-524E191E4606}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBA0E023-D078-4CF1-B94A-D300AA98AF43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBA0E023-D078-4CF1-B94A-D300AA98AF43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBA0E023-D078-4CF1-B94A-D300AA98AF43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA0E023-D078-4CF1-B94A-D300AA98AF43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {2A730553-81B6-40A5-ADDC-B1FAA2819377}
+		SolutionGuid = {4BE6E9E2-77E5-419E-9D52-E0F3F833288D}
 	EndGlobalSection
 EndGlobal

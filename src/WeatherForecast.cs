@@ -1,4 +1,4 @@
-namespace WalletWiseAPI
+namespace WalletWiseApi
 {
     public class WeatherForecast
     {
