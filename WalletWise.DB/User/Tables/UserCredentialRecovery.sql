@@ -7,7 +7,3 @@
 
     CONSTRAINT [FK_UserCredentialRecovery_User] FOREIGN KEY ([UserId]) REFERENCES [User].[User]([Id])
 )
-
-GO
-
-CREATE INDEX [IX_UserId_Question] ON [User].[UserCredentialRecovery] ([UserId], [Question])
