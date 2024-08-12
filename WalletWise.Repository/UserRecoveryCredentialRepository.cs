@@ -4,11 +4,11 @@ using WalletWise.Model.User;
 
 namespace WalletWise.Repository
 {
-    public class UserRecoveryCrdentialRepository : IRepository<UserCredentialRecovery>
+    public class UserRecoveryCredentialRepository : IRepository<UserCredentialRecovery>
     {
         private readonly string _connectionString;
 
-        public UserRecoveryCrdentialRepository(string connectionString)
+        public UserRecoveryCredentialRepository(string connectionString)
         {
             _connectionString = connectionString;
         }
@@ -19,7 +19,7 @@ namespace WalletWise.Repository
 
         public Task<UserCredentialRecovery?> GetByIdAsync(long id) => throw new NotImplementedException();
 
-        public async Task<UserCredentialRecovery?> UserRecoveryCrdentialByUsername(long id)
+        public async Task<UserCredentialRecovery?> GetUserRecoveryCrdentialByUsername(long id)
         {
             UserCredentialRecovery? result = null;
 
@@ -32,7 +32,7 @@ namespace WalletWise.Repository
                     using (var cmd = new SqlCommand(Constants.GET_USER_CREDENTIAL_RECOVERY_BY_USER_ID_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@userId", SqlDbType.NVarChar).Value = id;
+                        cmd.Parameters.Add("@userId", SqlDbType.BigInt).Value = id;
 
                         using (var reader = await cmd.ExecuteReaderAsync())
                         {
@@ -46,7 +46,7 @@ namespace WalletWise.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error class: {nameof(UserRecoveryCrdentialRepository)}, method: {nameof(UserRecoveryCrdentialByUsername)}, error: {ex.Message}");
+                Console.WriteLine($"Error class: {nameof(UserRecoveryCredentialRepository)}, method: {nameof(GetUserRecoveryCrdentialByUsername)}, error: {ex.Message}");
             }
 
             return result;
@@ -68,9 +68,10 @@ namespace WalletWise.Repository
                     using (var cmd = new SqlCommand(Constants.INSERT_USER_CREDENTIAL_RECOVERY_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@userId",   SqlDbType.BigInt).Value   = item.User.Id;
-                        cmd.Parameters.Add("@question", SqlDbType.NVarChar).Value = item.Question;
-                        cmd.Parameters.Add("@response", SqlDbType.NVarChar).Value = item.Response;
+                        cmd.Parameters.Add("@userId",       SqlDbType.BigInt).Value   = item.User.Id;
+                        cmd.Parameters.Add("@question",     SqlDbType.NVarChar).Value = item.Question;
+                        cmd.Parameters.Add("@responseSalt", SqlDbType.NVarChar).Value = item.ResponseSalt;
+                        cmd.Parameters.Add("@response",     SqlDbType.NVarChar).Value = item.Response;
 
                         var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.BigInt);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -83,7 +84,7 @@ namespace WalletWise.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error class: {nameof(UserRecoveryCrdentialRepository)}, method: {nameof(InsertAsync)}, error: {ex.Message}");
+                Console.WriteLine($"Error class: {nameof(UserRecoveryCredentialRepository)}, method: {nameof(InsertAsync)}, error: {ex.Message}");
             }
 
             return result;
@@ -105,9 +106,10 @@ namespace WalletWise.Repository
                     using (var cmd = new SqlCommand(Constants.UPDATE_USER_CREDENTIAL_RECOVERY_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@userId",   SqlDbType.BigInt).Value   = item.User.Id;
-                        cmd.Parameters.Add("@question", SqlDbType.NVarChar).Value = item.Question;
-                        cmd.Parameters.Add("@response", SqlDbType.NVarChar).Value = item.Response;
+                        cmd.Parameters.Add("@userId",       SqlDbType.BigInt).Value   = item.User.Id;
+                        cmd.Parameters.Add("@question",     SqlDbType.NVarChar).Value = item.Question;
+                        cmd.Parameters.Add("@responseSalt", SqlDbType.NVarChar).Value = item.ResponseSalt;
+                        cmd.Parameters.Add("@response",     SqlDbType.NVarChar).Value = item.Response;
 
                         var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.BigInt);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -120,7 +122,7 @@ namespace WalletWise.Repository
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error class: {nameof(UserRecoveryCrdentialRepository)}, method: {nameof(UpdateAsync)}, error: {ex.Message}");
+                Console.WriteLine($"Error class: {nameof(UserRecoveryCredentialRepository)}, method: {nameof(UpdateAsync)}, error: {ex.Message}");
             }
 
             return result;
@@ -133,13 +135,14 @@ namespace WalletWise.Repository
 
             return new UserCredentialRecovery()
             {
-                Id       = (long)reader["Id"],
-                User     = new User() 
+                Id           = (long)reader["Id"],
+                User         = new User() 
                 {
                     Id = (long)reader["UserId"]
                 },
-                Question = (string)reader["Question"],
-                Response = (string)reader["Response"],
+                Question     = (string)reader["Question"],
+                ResponseSalt = (string)reader["ResponseSalt"],
+                Response     = (string)reader["Response"],
             };
         }
     }

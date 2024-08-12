@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [User].[UpdateUserCredentialRecovery]
-	@userId   BIGINT,      
-    @question NVARCHAR(MAX),
-    @response NVARCHAR(MAX)
+	@userId       BIGINT,      
+    @question     NVARCHAR(MAX),
+    @responseSalt NVARCHAR(255),
+    @response     NVARCHAR(MAX)
 AS
 	BEGIN
 
@@ -15,8 +16,9 @@ AS
     IF @transactionOwner = 1 BEGIN TRANSACTION
 
     UPDATE [User].[UserCredentialRecovery]
-       SET [Question] = @question,
-           [Response] = @response
+       SET [Question]     = @question,
+           [ResponseSalt] = @responseSalt,
+           [Response]     = @response
      WHERE [UserId] = @userId
 
     SELECT @err = @@error, @count = @@ROWCOUNT IF @err <> 0 

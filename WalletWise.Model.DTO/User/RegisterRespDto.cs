@@ -1,6 +1,6 @@
 ﻿namespace WalletWise.Model.DTO.User
 {
-    public class UserRegisterRespDto
+    public class RegisterRespDto
     {
         public bool IsRegisterSuccess { get; set; }
     }

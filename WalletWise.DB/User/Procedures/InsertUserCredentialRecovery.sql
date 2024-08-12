@@ -1,7 +1,8 @@
 ﻿CREATE PROCEDURE [User].[InsertUserCredentialRecovery]
-	@userId   BIGINT,  
-    @question NVARCHAR(MAX),       
-    @response NVARCHAR(MAX)
+	@userId       BIGINT,  
+    @question     NVARCHAR(MAX), 
+    @responseSalt NVARCHAR(255),
+    @response     NVARCHAR(MAX)
 AS
 	BEGIN
 
@@ -18,12 +19,14 @@ AS
     (
         [UserId],
         [Question],
+        [ResponseSalt],
         [Response]
     )
     VALUES
     (
         @userId,
         @question,
+        @responseSalt,
         @response
     )
     

@@ -8,6 +8,7 @@ AS
     SELECT [Id],
 	       [UserId],
 		   [Question],
+		   [ResponseSalt],
 	       [Response]
       FROM [User].[UserCredentialRecovery]
       WHERE [UserId] = @userId
