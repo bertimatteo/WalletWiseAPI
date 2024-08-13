@@ -5,13 +5,13 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletWiseApi", "src\WalletWiseApi.csproj", "{0D1C540C-0C87-4F8D-82CC-524E191E4606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletWise.Model", "WalletWise.Model\WalletWise.Model.csproj", "{EBA0E023-D078-4CF1-B94A-D300AA98AF43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletWise.Model", "WalletWise.Model\WalletWise.Model.csproj", "{EBA0E023-D078-4CF1-B94A-D300AA98AF43}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "WalletWise.DB", "WalletWise.DB\WalletWise.DB.sqlproj", "{ED535D55-9454-48CE-A566-15A9DC1CF005}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletWise.Repository", "WalletWise.Repository\WalletWise.Repository.csproj", "{087CEFAD-ECD2-4E67-BBD2-E8B8E0A0BDE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletWise.Repository", "WalletWise.Repository\WalletWise.Repository.csproj", "{087CEFAD-ECD2-4E67-BBD2-E8B8E0A0BDE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletWise.Model.DTO", "WalletWise.Model.DTO\WalletWise.Model.DTO.csproj", "{FF3966BE-4611-4DD9-A25E-C0F1CAD8FA1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WalletWise.Model.DTO", "WalletWise.Model.DTO\WalletWise.Model.DTO.csproj", "{FF3966BE-4611-4DD9-A25E-C0F1CAD8FA1B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

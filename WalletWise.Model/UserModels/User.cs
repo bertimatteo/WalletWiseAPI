@@ -1,4 +1,4 @@
-﻿namespace WalletWise.Model.User
+﻿namespace WalletWise.Model.UserModels
 {
     public class User : EntityBase
     {

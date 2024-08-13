@@ -11,5 +11,12 @@
 
         public const string UPDATE_USER_SP                     = "[User].[UpdateUser]";
         public const string UPDATE_USER_CREDENTIAL_RECOVERY_SP = "[User].[UpdateUserCredentialRecovery]";
+
+        // BALANCE
+        public const string GET_CATEGORIES_BY_USER_SP = "[Balance].[GetCategoriesByUser]";
+
+        public const string INSERT_CATEGORY_SP = "[Balance].[InsertCategory]";
+
+        public const string UPDATE_CATEGORY_SP = "[Balance].[UpdateCategory]";
     }
 }

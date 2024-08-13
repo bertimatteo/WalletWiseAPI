@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using WalletWise.Model.DTO.User;
-using WalletWise.Model.User;
-using WalletWise.Repository;
+using WalletWise.Model.UserModels;
+using WalletWise.Repository.UserRepository;
 using WalletWiseApi.Services;
 
 namespace WalletWiseApi.Controllers

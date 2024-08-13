@@ -60,6 +60,9 @@
     <Folder Include="User" />
     <Folder Include="User\Tables" />
     <Folder Include="User\Procedures" />
+    <Folder Include="Balance" />
+    <Folder Include="Balance\Tables" />
+    <Folder Include="Balance\Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Security\User.sql" />
@@ -71,5 +74,10 @@
     <Build Include="User\Procedures\InsertUser.sql" />
     <Build Include="User\Procedures\GetUserCredentialRecoveryByUserId.sql" />
     <Build Include="User\Procedures\GetUserByUsername.sql" />
+    <Build Include="Security\Balance.sql" />
+    <Build Include="Balance\Tables\Category.sql" />
+    <Build Include="Balance\Procedures\GetCategoriesByUser.sql" />
+    <Build Include="Balance\Procedures\InsertCategory.sql" />
+    <Build Include="Balance\Procedures\UpdateCategory.sql" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using WalletWise.Model.User;
+using WalletWise.Model.UserModels;
 
-namespace WalletWise.Repository
+namespace WalletWise.Repository.UserRepository
 {
     public class UserRecoveryCredentialRepository : IRepository<UserCredentialRecovery>
     {
@@ -68,10 +68,10 @@ namespace WalletWise.Repository
                     using (var cmd = new SqlCommand(Constants.INSERT_USER_CREDENTIAL_RECOVERY_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@userId",       SqlDbType.BigInt).Value   = item.User.Id;
-                        cmd.Parameters.Add("@question",     SqlDbType.NVarChar).Value = item.Question;
+                        cmd.Parameters.Add("@userId", SqlDbType.BigInt).Value = item.User.Id;
+                        cmd.Parameters.Add("@question", SqlDbType.NVarChar).Value = item.Question;
                         cmd.Parameters.Add("@responseSalt", SqlDbType.NVarChar).Value = item.ResponseSalt;
-                        cmd.Parameters.Add("@response",     SqlDbType.NVarChar).Value = item.Response;
+                        cmd.Parameters.Add("@response", SqlDbType.NVarChar).Value = item.Response;
 
                         var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.BigInt);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -106,10 +106,10 @@ namespace WalletWise.Repository
                     using (var cmd = new SqlCommand(Constants.UPDATE_USER_CREDENTIAL_RECOVERY_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@userId",       SqlDbType.BigInt).Value   = item.User.Id;
-                        cmd.Parameters.Add("@question",     SqlDbType.NVarChar).Value = item.Question;
+                        cmd.Parameters.Add("@userId", SqlDbType.BigInt).Value = item.User.Id;
+                        cmd.Parameters.Add("@question", SqlDbType.NVarChar).Value = item.Question;
                         cmd.Parameters.Add("@responseSalt", SqlDbType.NVarChar).Value = item.ResponseSalt;
-                        cmd.Parameters.Add("@response",     SqlDbType.NVarChar).Value = item.Response;
+                        cmd.Parameters.Add("@response", SqlDbType.NVarChar).Value = item.Response;
 
                         var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.BigInt);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -135,14 +135,14 @@ namespace WalletWise.Repository
 
             return new UserCredentialRecovery()
             {
-                Id           = (long)reader["Id"],
-                User         = new User() 
+                Id = (long)reader["Id"],
+                User = new User()
                 {
                     Id = (long)reader["UserId"]
                 },
-                Question     = (string)reader["Question"],
+                Question = (string)reader["Question"],
                 ResponseSalt = (string)reader["ResponseSalt"],
-                Response     = (string)reader["Response"],
+                Response = (string)reader["Response"],
             };
         }
     }

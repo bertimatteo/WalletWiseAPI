@@ -1,8 +1,8 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Data;
-using WalletWise.Model.User;
+using WalletWise.Model.UserModels;
 
-namespace WalletWise.Repository
+namespace WalletWise.Repository.UserRepository
 {
     public class UserRepository : IRepository<User>
     {
@@ -68,10 +68,10 @@ namespace WalletWise.Repository
                     using (var cmd = new SqlCommand(Constants.INSERT_USER_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@username",     SqlDbType.NVarChar).Value = item.Username;
-                        cmd.Parameters.Add("@email",        SqlDbType.NVarChar).Value = item.Email;
+                        cmd.Parameters.Add("@username", SqlDbType.NVarChar).Value = item.Username;
+                        cmd.Parameters.Add("@email", SqlDbType.NVarChar).Value = item.Email;
                         cmd.Parameters.Add("@passwordSalt", SqlDbType.NVarChar).Value = item.PasswordSalt;
-                        cmd.Parameters.Add("@password",     SqlDbType.NVarChar).Value = item.Password;
+                        cmd.Parameters.Add("@password", SqlDbType.NVarChar).Value = item.Password;
 
                         var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.BigInt);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -106,9 +106,9 @@ namespace WalletWise.Repository
                     using (var cmd = new SqlCommand(Constants.UPDATE_USER_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@username",     SqlDbType.NVarChar).Value = item.Username;
+                        cmd.Parameters.Add("@username", SqlDbType.NVarChar).Value = item.Username;
                         cmd.Parameters.Add("@passwordSalt", SqlDbType.NVarChar).Value = item.PasswordSalt;
-                        cmd.Parameters.Add("@password",     SqlDbType.NVarChar).Value = item.Password;
+                        cmd.Parameters.Add("@password", SqlDbType.NVarChar).Value = item.Password;
 
                         var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.BigInt);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -134,11 +134,11 @@ namespace WalletWise.Repository
 
             return new User()
             {
-                Id           = (long)reader["Id"],
-                Username     = (string)reader["Username"],
-                Email        = (string)reader["Email"],
+                Id = (long)reader["Id"],
+                Username = (string)reader["Username"],
+                Email = (string)reader["Email"],
                 PasswordSalt = (string)reader["PasswordSalt"],
-                Password     = (string)reader["Password"]
+                Password = (string)reader["Password"]
             };
         }
     }
