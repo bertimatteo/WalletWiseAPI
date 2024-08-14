@@ -55,7 +55,7 @@ namespace WalletWise.Repository.BalanceRepository
 
         public Task<List<Category>> GetAllAsync() => throw new NotImplementedException();
 
-        public async Task<List<Category>> GetAllAsync(long userId)
+        public async Task<List<Category>> GetAllAsync(long userId, bool isDeleted = false)
         {
             List<Category> results = new List<Category>();
 
@@ -68,7 +68,8 @@ namespace WalletWise.Repository.BalanceRepository
                     using (var cmd = new SqlCommand(Constants.GET_CATEGORIES_BY_USER_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@userId", SqlDbType.BigInt).Value = userId;
+                        cmd.Parameters.Add("@userId",    SqlDbType.BigInt).Value = userId;
+                        cmd.Parameters.Add("@isDeleted", SqlDbType.Bit).Value    = isDeleted;
 
                         using (var reader = await cmd.ExecuteReaderAsync())
                         {

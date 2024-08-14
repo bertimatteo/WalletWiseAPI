@@ -13,7 +13,7 @@ AS
 	       [ColorBackground],
 		   [IsDeleted] 
       FROM [Balance].[Category]
-      WHERE [UserId] = @userId
+      WHERE [UserId] = @userId AND [IsDeleted] = @isDeleted
 
     RETURN @@ROWCOUNT
 

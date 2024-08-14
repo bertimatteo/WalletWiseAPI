@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WalletWise.Model\WalletWise.Model.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -5,10 +5,10 @@ using WalletWise.Model.UserModels;
 using WalletWise.Repository.UserRepository;
 using WalletWiseApi.Services;
 
-namespace WalletWiseApi.Controllers
+namespace WalletWiseApi.Controllers.UserControllers
 {
-    [Route("api/v1/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly IConfiguration? _config;
@@ -26,8 +26,8 @@ namespace WalletWiseApi.Controllers
 
             if (string.IsNullOrWhiteSpace(_connString))
                 throw new ArgumentNullException(nameof(_connString));
-            
-            _userRepository                   = new UserRepository(_connString);
+
+            _userRepository = new UserRepository(_connString);
             _userRecoveryCredentialRepository = new UserRecoveryCredentialRepository(_connString);
         }
 
@@ -43,14 +43,14 @@ namespace WalletWiseApi.Controllers
                 return BadRequest();
             }
 
-            if (data.Username is null || String.IsNullOrEmpty(data.Username) || data.Password is null || String.IsNullOrEmpty(data.Password))
+            if (data.Username is null || string.IsNullOrEmpty(data.Username) || data.Password is null || string.IsNullOrEmpty(data.Password))
             {
                 var msg = $"Error class: {nameof(UserController)}, method: {nameof(Register)}, error: invalid user information";
                 _logger.LogError(msg);
                 return BadRequest(msg);
             }
 
-            if (data.Question is null || String.IsNullOrEmpty(data.Question) || data.Response is null || String.IsNullOrEmpty(data.Response))
+            if (data.Question is null || string.IsNullOrEmpty(data.Question) || data.Response is null || string.IsNullOrEmpty(data.Response))
             {
                 var msg = $"Error class: {nameof(UserController)}, method: {nameof(Register)}, error: invalid user recover information";
                 _logger.LogError(msg);
@@ -66,7 +66,7 @@ namespace WalletWiseApi.Controllers
 
             var result = new RegisterRespDto();
 
-            try 
+            try
             {
                 var tmp = await _userRepository.GetUserByUsername(data.Username);
 
@@ -79,8 +79,8 @@ namespace WalletWiseApi.Controllers
 
                 User user = new User()
                 {
-                    Username     = data.Username,
-                    Email        = data.Username,
+                    Username = data.Username,
+                    Email = data.Username,
                     PasswordSalt = PasswordHasher.GenerateSalt()
                 };
 
@@ -106,8 +106,8 @@ namespace WalletWiseApi.Controllers
 
                 UserCredentialRecovery userCredentialRecovery = new UserCredentialRecovery()
                 {
-                    User         = new User() { Id = userId },
-                    Question     = data.Question,
+                    User = new User() { Id = userId },
+                    Question = data.Question,
                     ResponseSalt = PasswordHasher.GenerateSalt()
                 };
 
@@ -155,7 +155,7 @@ namespace WalletWiseApi.Controllers
                 return BadRequest(msg);
             }
 
-            if (data.Username is null || String.IsNullOrEmpty(data.Username) || data.Password is null || String.IsNullOrEmpty(data.Password))
+            if (data.Username is null || string.IsNullOrEmpty(data.Username) || data.Password is null || string.IsNullOrEmpty(data.Password))
             {
                 var msg = $"Error class: {nameof(UserController)}, method: {nameof(Login)}, error: credentials are not valid";
                 _logger.LogError(msg);
@@ -193,7 +193,7 @@ namespace WalletWiseApi.Controllers
 
                 result.Token = JwtTokenService.CreateToken(data.Username, Constants.SYMMETRIC_SECURITY_KEY);
 
-                if (String.IsNullOrEmpty(result.Token))
+                if (string.IsNullOrEmpty(result.Token))
                 {
                     var msg = $"Error class: {nameof(UserController)}, method: {nameof(Login)}, error: Some error occured during token generation";
                     _logger.LogError(msg);
@@ -227,7 +227,7 @@ namespace WalletWiseApi.Controllers
         {
             if (username is null)
             {
-                var msg = $"Error class: {nameof(UserController)}, method: {nameof(GetQuestion)}, error: UserRegister is null";
+                var msg = $"Error class: {nameof(UserController)}, method: {nameof(GetQuestion)}, error: username is null";
                 _logger.LogError(msg);
                 return BadRequest(msg);
             }
@@ -292,7 +292,7 @@ namespace WalletWiseApi.Controllers
                 return BadRequest();
             }
 
-            if (data.Username is null || String.IsNullOrEmpty(data.Username) || data.Response is null || String.IsNullOrEmpty(data.Response) || data.NewPassword is null || String.IsNullOrEmpty(data.NewPassword))
+            if (data.Username is null || string.IsNullOrEmpty(data.Username) || data.Response is null || string.IsNullOrEmpty(data.Response) || data.NewPassword is null || string.IsNullOrEmpty(data.NewPassword))
             {
                 var msg = $"Error class: {nameof(UserController)}, method: {nameof(ResetPassword)}, error: invalid user information";
                 _logger.LogError(msg);
