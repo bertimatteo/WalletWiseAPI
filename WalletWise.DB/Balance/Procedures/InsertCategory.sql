@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [Balance].[InsertCategory]
 	@userId          BIGINT,  
-    @description     NVARCHAR(MAX),       
+    @description     NVARCHAR(MAX),  
+    @type            SMALLINT,
     @icon            NVARCHAR(255),
     @colorBackground NVARCHAR(255),
     @isDeleted       BIT
@@ -20,6 +21,7 @@ AS
     (
         [UserId],
 	    [Description],
+        [Type],
 	    [Icon],
 	    [ColorBackground],
 	    [IsDeleted]
@@ -27,7 +29,8 @@ AS
     VALUES
     (
         @userId,
-        @description,       
+        @description,  
+        @type,
         @icon,
         @colorBackground,
         @isDeleted

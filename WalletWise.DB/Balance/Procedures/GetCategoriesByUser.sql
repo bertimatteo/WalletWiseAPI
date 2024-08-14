@@ -1,6 +1,7 @@
 ﻿CREATE PROCEDURE [Balance].[GetCategoriesByUser]
 	@userId    BIGINT,
-	@isDeleted BIT
+	@type      SMALLINT = NULL,
+	@isDeleted BIT      = NULL
 AS
 	BEGIN
 
@@ -9,11 +10,14 @@ AS
     SELECT [Id],
 	       [UserId],
 	       [Description],
+		   [Type],
 	       [Icon],
 	       [ColorBackground],
 		   [IsDeleted] 
       FROM [Balance].[Category]
-      WHERE [UserId] = @userId AND [IsDeleted] = @isDeleted
+      WHERE [UserId] = @userId AND 
+			([Type]      = @type      OR @type IS NULL) AND
+	        ([IsDeleted] = @isDeleted OR @isDeleted IS NULL) 
 
     RETURN @@ROWCOUNT
 

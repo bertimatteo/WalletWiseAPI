@@ -79,5 +79,6 @@
     <Build Include="Balance\Procedures\GetCategoriesByUser.sql" />
     <Build Include="Balance\Procedures\InsertCategory.sql" />
     <Build Include="Balance\Procedures\UpdateCategory.sql" />
+    <Build Include="Balance\Tables\Item.sql" />
   </ItemGroup>
 </Project>

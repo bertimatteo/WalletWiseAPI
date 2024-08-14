@@ -9,7 +9,7 @@ using WalletWise.Repository.UserRepository;
 
 namespace WalletWiseApi.Controllers.BalanceControllers
 {
-    [Authorize]
+    //[Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CategoryController : ControllerBase
@@ -39,7 +39,7 @@ namespace WalletWiseApi.Controllers.BalanceControllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ActionResult<GetCategoriesRespDto>))]
-        public async Task<ActionResult<GetCategoriesRespDto>> GetCategories(string username)
+        public async Task<ActionResult<GetCategoriesRespDto>> GetCategories(string username, CategoryType? type = null, bool isDeleted = false)
         {
             if (username is null)
             {
@@ -69,7 +69,7 @@ namespace WalletWiseApi.Controllers.BalanceControllers
                     return NotFound(msg);
                 }
 
-                var categories = await _categoryRepository.GetAllAsync(user.Id);
+                var categories = await _categoryRepository.GetAllAsync(user.Id, type, isDeleted);
 
                 result.Categories = categories;
             }
@@ -137,6 +137,7 @@ namespace WalletWiseApi.Controllers.BalanceControllers
                 {
                     User            = new User() { Id = user.Id },
                     Description     = data.Description,
+                    CategoryType    = (CategoryType)data.Type,
                     Icon            = data.Icon,
                     ColorBackground = data.ColorBackground,
                     IsDeleted       = data.IsDelete

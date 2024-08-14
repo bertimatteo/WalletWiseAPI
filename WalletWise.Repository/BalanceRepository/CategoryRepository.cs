@@ -55,7 +55,7 @@ namespace WalletWise.Repository.BalanceRepository
 
         public Task<List<Category>> GetAllAsync() => throw new NotImplementedException();
 
-        public async Task<List<Category>> GetAllAsync(long userId, bool isDeleted = false)
+        public async Task<List<Category>> GetAllAsync(long userId, CategoryType? type = null, bool isDeleted = false)
         {
             List<Category> results = new List<Category>();
 
@@ -68,8 +68,9 @@ namespace WalletWise.Repository.BalanceRepository
                     using (var cmd = new SqlCommand(Constants.GET_CATEGORIES_BY_USER_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("@userId",    SqlDbType.BigInt).Value = userId;
-                        cmd.Parameters.Add("@isDeleted", SqlDbType.Bit).Value    = isDeleted;
+                        cmd.Parameters.Add("@userId",    SqlDbType.BigInt).Value   = userId;
+                        cmd.Parameters.Add("@type",      SqlDbType.SmallInt).Value = type != null ? type : null;
+                        cmd.Parameters.Add("@isDeleted", SqlDbType.Bit).Value      = isDeleted;
 
                         using (var reader = await cmd.ExecuteReaderAsync())
                         {
@@ -109,11 +110,12 @@ namespace WalletWise.Repository.BalanceRepository
                     using (var cmd = new SqlCommand(Constants.INSERT_CATEGORY_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("userId ", SqlDbType.BigInt).Value = item.User.Id;
-                        cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = item.Description;
-                        cmd.Parameters.Add("@icon", SqlDbType.NVarChar).Value = item.Icon;
+                        cmd.Parameters.Add("userId ",          SqlDbType.BigInt).Value   = item.User.Id;
+                        cmd.Parameters.Add("@description",     SqlDbType.NVarChar).Value = item.Description;
+                        cmd.Parameters.Add("@type",            SqlDbType.SmallInt).Value = item.CategoryType;
+                        cmd.Parameters.Add("@icon",            SqlDbType.NVarChar).Value = item.Icon;
                         cmd.Parameters.Add("@colorBackground", SqlDbType.NVarChar).Value = item.ColorBackground;
-                        cmd.Parameters.Add("@isDeleted ", SqlDbType.Bit).Value = item.IsDeleted;
+                        cmd.Parameters.Add("@isDeleted ",      SqlDbType.Bit).Value      = item.IsDeleted;
 
                         var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.BigInt);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -148,11 +150,11 @@ namespace WalletWise.Repository.BalanceRepository
                     using (var cmd = new SqlCommand(Constants.UPDATE_CATEGORY_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("id ", SqlDbType.BigInt).Value = item.Id;
-                        cmd.Parameters.Add("@description", SqlDbType.NVarChar).Value = item.Description;
-                        cmd.Parameters.Add("@icon", SqlDbType.NVarChar).Value = item.Icon;
+                        cmd.Parameters.Add("id ",              SqlDbType.BigInt).Value   = item.Id;
+                        cmd.Parameters.Add("@description",     SqlDbType.NVarChar).Value = item.Description;
+                        cmd.Parameters.Add("@icon",            SqlDbType.NVarChar).Value = item.Icon;
                         cmd.Parameters.Add("@colorBackground", SqlDbType.NVarChar).Value = item.ColorBackground;
-                        cmd.Parameters.Add("@isDeleted ", SqlDbType.Bit).Value = item.IsDeleted;
+                        cmd.Parameters.Add("@isDeleted ",      SqlDbType.Bit).Value      = item.IsDeleted;
 
                         var returnParameter = cmd.Parameters.Add("@ReturnVal", SqlDbType.BigInt);
                         returnParameter.Direction = ParameterDirection.ReturnValue;
@@ -178,12 +180,13 @@ namespace WalletWise.Repository.BalanceRepository
 
             return new Category()
             {
-                Id = (long)reader["Id"],
-                User = new User() { Id = (long)reader["UserId"] },
-                Description = (string)reader["Description"],
-                Icon = (string)reader["Icon"],
+                Id              = (long)reader["Id"],
+                User            = new User() { Id = (long)reader["UserId"] },
+                Description     = (string)reader["Description"],
+                CategoryType    = (CategoryType)((Int16)reader["Type"]),
+                Icon            = (string)reader["Icon"],
                 ColorBackground = (string)reader["ColorBackground"],
-                IsDeleted = (bool)reader["IsDeleted"]
+                IsDeleted       = (bool)reader["IsDeleted"]
             };
         }
     }
