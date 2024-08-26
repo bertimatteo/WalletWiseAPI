@@ -110,7 +110,7 @@ namespace WalletWise.Repository.BalanceRepository
                     using (var cmd = new SqlCommand(Constants.INSERT_CATEGORY_SP, conn))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("userId ",          SqlDbType.BigInt).Value   = item.User.Id;
+                        cmd.Parameters.Add("@userId ",         SqlDbType.BigInt).Value   = item.User.Id;
                         cmd.Parameters.Add("@description",     SqlDbType.NVarChar).Value = item.Description;
                         cmd.Parameters.Add("@type",            SqlDbType.SmallInt).Value = item.CategoryType;
                         cmd.Parameters.Add("@icon",            SqlDbType.NVarChar).Value = item.Icon;

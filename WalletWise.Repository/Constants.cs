@@ -14,9 +14,15 @@
 
         // BALANCE
         public const string GET_CATEGORIES_BY_USER_SP = "[Balance].[GetCategoriesByUser]";
+        public const string GET_ITEMS_SP              = "[Balance].[GetItems]";
+        public const string GET_ITEM_BY_ID_SP         = "[Balance].[GetItemById]";
 
         public const string INSERT_CATEGORY_SP = "[Balance].[InsertCategory]";
+        public const string INSERT_ITEM_SP     = "[Balance].[InsertItem]";
 
         public const string UPDATE_CATEGORY_SP = "[Balance].[UpdateCategory]";
+        public const string UPDATE_ITEM_SP     = "[Balance].[UpdateItem]";
+
+        public const string DELETE_ITEM_SP = "[Balance].[DeleteItem]";
     }
 }

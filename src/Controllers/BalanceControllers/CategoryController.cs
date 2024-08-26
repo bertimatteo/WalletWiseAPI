@@ -9,7 +9,7 @@ using WalletWise.Repository.UserRepository;
 
 namespace WalletWiseApi.Controllers.BalanceControllers
 {
-    //[Authorize]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CategoryController : ControllerBase

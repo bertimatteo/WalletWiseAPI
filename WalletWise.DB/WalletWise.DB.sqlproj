@@ -80,5 +80,10 @@
     <Build Include="Balance\Procedures\InsertCategory.sql" />
     <Build Include="Balance\Procedures\UpdateCategory.sql" />
     <Build Include="Balance\Tables\Item.sql" />
+    <Build Include="Balance\Procedures\GetItems.sql" />
+    <Build Include="Balance\Procedures\InsertItem.sql" />
+    <Build Include="Balance\Procedures\UpdateItem.sql" />
+    <Build Include="Balance\Procedures\DeleteItem.sql" />
+    <Build Include="Balance\Procedures\GetItemById.sql" />
   </ItemGroup>
 </Project>
